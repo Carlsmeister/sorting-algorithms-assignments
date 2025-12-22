@@ -1,7 +1,18 @@
-public class MergeSorter implements IntSorter {
+public class MergeInsertSorter implements IntSorter {
+
+    private int M = 75;
+    private IntSorter insertionSorter = new InsertionSorter();
 
     public void sort(int[] a, int[] temp, int lo, int hi) {
         if (hi <= lo) return;
+
+        if (hi - lo <= M) {
+            int[] sortTemp = new int[hi-lo+1];
+            for (int i = lo; i <= hi; i++) sortTemp[i-lo] = a[i];
+            insertionSorter.sort(sortTemp);
+            for (int i = lo; i <= hi; i++) a[i] = sortTemp[i-lo];
+            return;
+        }
 
         int mid = lo + (hi - lo) / 2;
 

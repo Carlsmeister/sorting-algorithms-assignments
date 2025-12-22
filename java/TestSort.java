@@ -35,9 +35,9 @@ public class TestSort {
     }
 
     public static void main(String[] args) {
-        IntSorter sorter = new MergeSorter();
+        IntSorter sorter = new MergeInsertSorter();
         
-        int firstN = 1000;
+        int firstN = 100000;
 
         System.out.println("Unordered:");
         testSort(sorter, firstN, false);

@@ -1,17 +1,17 @@
 public class TestSort {
     private static int[] create(int N, boolean ordered) {
         return ordered ?
-            ArrayUtils.createOrdered(N) :
-            ArrayUtils.createShuffeled(N);
+            ArrayUtil.createOrdered(N) :
+            ArrayUtil.createShuffeled(N);
     }
     
-    private static double timeit(IntSort sorter, int[] a) {
+    private static double timeit(IntSorter sorter, int[] a) {
         long before = System.currentTimeMillis();
         sorter.sort(a);
         return (System.currentTimeMillis() - before) / 1000.0;
     }
 
-    private static void testSort(IntSort sorter, int firstN, boolean ordered) {
+    private static void testSort(IntSorter sorter, int firstN, boolean ordered) {
         double t1 = 0;
         int N = firstN/2;
 
@@ -20,11 +20,11 @@ public class TestSort {
             int[] a = create(N, ordered);
             t1 = timeit(sorter, a);
             System.out.println("T("+N+")="+t1);
-            ArrayUtils.testOrdered(a);
+            ArrayUtil.testOrdered(a);
         }
         int[] a = create(4*N, ordered);
         double t4 = timeit(sorter, a);
-        ArrayUtils.testOrdered(a);
+        ArrayUtil.testOrdered(a);
         double t01 = t1 / (N   * Math.log(N  )); // ”tid” per jämförelse
         double t04 = t4 / (4*N * Math.log(4*N));
         System.out.println("T("+4*N+")="+t4+" growth per N log N: "+t04/t01);
@@ -35,7 +35,7 @@ public class TestSort {
     }
 
     public static void main(String[] args) {
-        IntSort sorter = new MergeSort();
+        IntSorter sorter = new MergeSorter();
         
         int firstN = 1000;
 

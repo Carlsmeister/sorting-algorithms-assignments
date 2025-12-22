@@ -1,7 +1,15 @@
-public class QuickSorter implements IntSort {
+public class QuickSorter implements IntSorter {
 
+    private int M = 15;
+    private IntSort insertionSorter = new InsertionSort();
     public void sort(int[] a, int lo, int hi) {
         if (hi <= lo) return;
+
+        if (hi - lo <= M) {
+            insertionSorter.sort(a);
+            return;
+        }
+
         int p = partition(a, lo, hi);
         sort(a, lo, p-1);
         sort(a, p+1, hi);

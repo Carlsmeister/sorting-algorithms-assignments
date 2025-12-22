@@ -1,4 +1,4 @@
-public class InsertionSorter implements IntSort {
+public class InsertionSorter implements IntSorter {
     public void sort(int[] a) {
         int N = a.length;
         for (int i = 0; i < N; i++) {

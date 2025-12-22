@@ -1,4 +1,4 @@
-public class MergeSorter implements IntSort {
+public class MergeSorter implements IntSorter {
 
     private int M = 15;
     private IntSort insertionSorter = new InsertionSort();
@@ -7,7 +7,10 @@ public class MergeSorter implements IntSort {
         if (hi <= lo) return;
 
         if (hi - lo <= M) {
-            insertionSorter.sort(a);
+            int[] sortTemp = new int[hi-lo+1];
+            for (int i = lo; i <= hi; i++) sortTemp[i-lo] = a[i];
+            insertionSorter.sort(sortTemp);
+            for (int i = lo; i <= hi; i++) a[i] = sortTemp[i-lo];
             return;
         }
 
